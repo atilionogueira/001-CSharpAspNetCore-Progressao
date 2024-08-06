@@ -1,0 +1,46 @@
+﻿@model IEnumerable<UCode.App.ViewModels.CampoViewModel>
+
+@{
+    ViewData["Title"] = "Lista Campos";
+}
+
+<h1>@ViewData["Title"]</h1>
+<vc:summary></vc:summary>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Novo Campo</a>
+</p>
+<table id="idTab" class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td class="text-right-long">
+                    <div class="float-right">
+                        <a class="btn btn-danger float-right mr-2" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+                        <a class="btn btn-warning float-right mr-2" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a>
+                        <a class="btn btn-info float-right mr-2" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

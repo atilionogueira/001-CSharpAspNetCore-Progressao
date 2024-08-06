@@ -1,0 +1,62 @@
+﻿@model IEnumerable<UCode.App.ViewModels.CampusViewModel>
+
+@{
+    ViewData["Title"] = "Lista Campus";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Novo Campus</a>
+</p>
+<table id="idTab" class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @FormatPhoneNumber(item.Telefone)
+                </td>
+                <td>
+                    <a class="btn btn-danger float-right mr-2" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
+                    <a class="btn btn-warning float-right mr-2" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pencil-alt"></span></a>
+                    <a class="btn btn-info float-right mr-2" asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-search"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+      
+    <script src="~/js/site.js"></script>
+}
+
+@functions {
+    public string FormatPhoneNumber(string phoneNumber)
+    {
+        if (!string.IsNullOrEmpty(phoneNumber) && phoneNumber.Length == 11)
+        {
+            return $"({phoneNumber.Substring(0, 2)}) {phoneNumber.Substring(2, 5)}-{phoneNumber.Substring(7)}";
+        }
+        return phoneNumber;
+    }
+}
+

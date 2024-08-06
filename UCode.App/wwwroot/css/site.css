@@ -1,0 +1,41 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Arquivo styles.css */
+.descricao-pequena {
+    max-width: 200px; /* Defina o tamanho desejado */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
+    white-space: nowrap; /* Evita quebrar o texto em várias linhas */
+}
+input,
+select,
+file,
+textarea {
+    max-width: 400px;
+}
+
+.table-img {
+    max-width: 200px; /* Ajuste a largura máxima conforme necessário */
+    height: 35px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

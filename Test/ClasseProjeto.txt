@@ -1,0 +1,133 @@
+public abstract class Entity
+{
+    public Guid Id { get; set; }
+
+    protected Entity()
+    {
+        Id = Guid.NewGuid();
+    }
+}
+
+public class Atividade : Entity
+{
+    public Guid CampoId { get; set; }
+    public int Numero { get; set; }
+    public string Descricao { get; set; }
+    public decimal Pontos { get; set; }
+
+    public Campo Campo { get; set; }
+    public IEnumerable<Comprovante> Comprovantes { get; set; }
+}
+
+public class Campo : Entity
+{
+    public string Nome { get; set; }
+    public string Descricao { get; set; }
+
+    public IEnumerable<Atividade> Atividades { get; set; }
+}
+
+public class Campus : Entity
+{
+    public string Cidade { get; set; }
+    public string Endereco { get; set; }
+    public string Telefone { get; set; }
+
+    public IEnumerable<Servidor> Servidores { get; set; }
+}
+
+public class Classe : Entity
+{
+    public string Nome { get; set; }
+    public int Nivel { get; set; }
+    public string Descricao { get; set; }
+
+    public IEnumerable<Progressao> Progressoes { get; set; }
+}
+
+public class Comprovante : Entity
+{
+    public Guid ProgressaoId { get; set; }
+    public Guid? AtividadeId { get; set; }
+    public decimal Quantidade { get; set; }
+    public DateTime Data { get; set; }
+    public DateTime? DataFinal { get; set; }
+    public string Arquivo { get; set; }
+
+    public Progressao Progressao { get; set; }
+    public Atividade Atividade { get; set; }
+    public Validacao Validacao { get; set; }
+}
+
+public class Endereco : Entity
+{
+    public string Logradouro { get; set; }
+    public string Numero { get; set; }
+    public string Complemento { get; set; }
+    public string Cep { get; set; }
+    public string Bairro { get; set; }
+    public string Cidade { get; set; }
+    public string Estado { get; set; }
+
+    public Guid CampusId { get; set; }
+    public Campus Campus { get; set; }
+}
+
+public class Progressao : Entity
+{
+    public Guid ClasseId { get; set; }
+    public DateTime DataInicial { get; set; }
+    public DateTime DataFinal { get; set; }
+    public string Observacao { get; set; }
+
+    public Classe Classe { get; set; }
+    public User Usuario { get; set; }
+    public IEnumerable<Comprovante> Comprovantes { get; set; }
+}
+
+public class Servidor : Entity
+{
+    public string NomeCompleto { get; set; }
+    public string Siape { get; set; }
+    public string CPF { get; set; }
+
+    public Guid CampusId { get; set; }
+    public Guid UserId { get; set; }
+
+    public Campus Campus { get; set; }
+    public User Usuario { get; set; }
+}
+
+public class Situacao : Entity
+{
+    public Guid StatusId { get; set; }
+    public DateTime MovimentadoEm { get; set; }
+    public string Detalhes { get; set; }
+
+    public Status Status { get; set; }
+    public User MovimentadoPor { get; set; }
+}
+
+public class Status : Entity
+{
+    public string Nome { get; set; }
+    public string Descricao { get; set; }
+
+    public IEnumerable<Situacao> Situacoes { get; set; }
+}
+
+public class User : Entity
+{
+    public string UserName { get; set; }
+}
+
+public class Validacao : Entity
+{
+    public Guid ComprovanteId { get; set; }
+    public DateTime ValidadoEm { get; set; }
+    public string Justificativa { get; set; }
+    public decimal Quantidade { get; set; }
+
+    public Comprovante Comprovante { get; set; }
+    public User ValidadoPor { get; set; }
+}

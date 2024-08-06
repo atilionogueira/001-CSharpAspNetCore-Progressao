@@ -1,0 +1,50 @@
+﻿@model IEnumerable<UCode.App.ViewModels.StatusViewModel>
+
+@{
+    ViewData["Title"] = "Lista Status";
+}
+
+<h1>@ViewData["Title"]</h1>
+<vc:summary></vc:summary>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Novo Status</a>
+</p>
+<table id="idTab" class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th class="descricao-pequena">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>     
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td class="text-end">
+                         <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search fa-sm"></spam></a>
+                         <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt fa-sm"></spam></a>
+                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash fa-sm"></spam></a>
+                </td>                    
+                </tr>
+            }   
+        
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}

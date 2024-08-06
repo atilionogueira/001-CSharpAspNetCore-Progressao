@@ -1,0 +1,11 @@
+{
+  "projects": [
+    "UCode.App",
+    "UCode.Business",
+    "UCode.Data"
+  ],
+  "sdk": {
+    "version": "6.0.414"
+  }
+}
+

@@ -1,0 +1,29 @@
+﻿@model UCode.App.ViewModels.ComprovanteViewModel
+
+<!--
+
+<div class="form-group">
+<label asp-for="Validacao.ValidadoPorId" class="control-label"></label>
+<input asp-for="Validacao.ValidadoPorId" class="form-control" />
+<span asp-validation-for="Validacao.ValidadoPorId" class="text-danger"></span>
+</div>
+-->
+
+<div class="form-group">
+    <label asp-for="Validacao.ValidadoEm" class="control-label"></label>
+    <input asp-for="Validacao.ValidadoEm" type="datetime-local" class="form-control" />
+    <span asp-validation-for="Validacao.ValidadoEm" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Validacao.Quantidade" class="control-label"></label>
+    <input asp-for="Validacao.Quantidade" class="form-control" />
+    <span asp-validation-for="Quantidade" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Validacao.Justificativa" class="control-label"></label>
+    <input asp-for="Validacao.Justificativa" class="form-control" />
+    <span asp-validation-for="Validacao.Justificativa" class="text-danger"></span>
+</div>
+
+
+

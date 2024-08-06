@@ -1,0 +1,66 @@
+﻿@model UCode.App.ViewModels.ServidorViewModel
+
+@{
+    ViewData["Title"] = "Novo Servidor";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <!--</> <div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+            @*<vc:summary></vc:summary>*@
+            <vc:summary></vc:summary>
+
+            <div class="form-group">
+                <label asp-for="CampusId" class="control-label"></label>
+
+                <select asp-for="CampusId" class="form-control" asp-items="@(new SelectList(Model.Campuss,"Id","Nome"))">
+                    <option></option>
+                </select>
+
+                <span asp-validation-for="CampusId" class="text-danger"></span>
+              
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeCompleto" class="control-label"></label>
+                <input asp-for="NomeCompleto" class="form-control" />
+                <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Siape" class="control-label"></label>
+                <input asp-for="Siape" class="form-control" />
+                <span asp-validation-for="Siape" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" class="form-control" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>            
+            <div class="form-group" style="margin-top: 10px">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+   <!--
+    <script>
+        $(document).ready(function () {
+            $('#Cpf').mask('000.000.000-00', { reverse: true });
+        });
+
+        $(document).ready(function () {
+            $('#Siape').mask('000.000.000', { reverse: true });
+        });
+    </script>
+     -->
+  
+}

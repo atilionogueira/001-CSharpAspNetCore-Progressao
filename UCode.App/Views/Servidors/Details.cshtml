@@ -1,0 +1,34 @@
+﻿@model UCode.App.ViewModels.ServidorViewModel
+@using UCode.App.Extensions
+
+@{
+    ViewData["Title"] = "Detalhes do Servidor";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Siape</th>
+                <th>Cpf</th>
+                <th>Campus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.NomeCompleto)</td>              
+                <td>@Model.Siape.FormataSiape()</td>
+                <td>@Model.Cpf.FormataCpf()</td>
+                <td>@Html.DisplayFor(model => model.Campus.Nome)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-info" asp-action="Index">Voltar</a>
+</div>

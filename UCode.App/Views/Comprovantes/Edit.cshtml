@@ -1,0 +1,89 @@
+﻿@model UCode.App.ViewModels.ComprovanteViewModel
+
+@{
+    ViewData["Title"] = "Editar Comprovante";
+}
+
+<h4 style="padding-top: 30px">@ViewData["Title"]</h4>
+<hr />
+
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <div style="display: flex; gap: 2px;">
+                <label asp-for="AtividadeId" class="control-label"></label>
+                <span>:</span>
+                @if (Model.Atividade != null)
+                {
+                    <label><b>@Model.Atividade.Detalhes</b></label>
+                }                
+            </div>
+            <div style="display: flex; gap: 2px;">
+                <label asp-for="ProgressaoId" class="control-label"></label>
+                <span>:</span>
+                @if (Model.Progressao != null)
+                {
+                    <label><b>@Model.Progressao.Observacao</b></label>
+                }
+            </div>
+
+            <label asp-for="Data" class="control-label"></label>
+            <input asp-for="Data" class="form-control" type="datetime-local" value="@Model.Data.ToString("yyyy-MM-ddTHH:mm")" />
+            <span asp-validation-for="Data" class="text-danger"></span>
+
+            <label asp-for="DataFinal" class="control-label"></label>
+            <input asp-for="DataFinal" class="form-control" type="datetime-local" value="@Model.DataFinal.ToString("yyyy-MM-ddTHH:mm")" />
+            <span asp-validation-for="DataFinal" class="text-danger"></span>
+
+            <label asp-for="Quantidade" class="control-label"></label>
+            <input asp-for="Quantidade" class="form-control" />
+            <span asp-validation-for="Quantidade" class="text-danger"></span>
+
+            <br />
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label>Imagem Atual</label>
+                <br />
+                <img src="~/imagens/@Model.Arquivo" alt="@Model.Arquivo" style="width: 70px; height: 100px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagemUpload" class="control-label"></label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ImagemUpload" asp-for="ImagemUpload">
+                    <label data-browse="Procurar" class="custom-file-label" for="ImagemUpload" style="width: 400px"></label>
+                    <label id="img_nome" style="display: none"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-top: -30px;">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+        <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+    </div>
+</form>
+<!--
+<div>
+    <partial name="../Validacaos/_ListaValidacao" model="@Model.Validacaos">
+</div>
+-->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#ImagemUpload").change(function () {
+            $("#img_nome").text(this.files[0].name);
+            $("#img_nome").show();
+        });
+    </script>
+}

@@ -1,0 +1,32 @@
+﻿@model UCode.App.ViewModels.ProgressaoViewModel
+@{
+    ViewData["Title"] = "Detalhes de Progressão";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Classe</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Classe.Nome)</td>
+                <td>@Html.DisplayFor(model => model.DataInicial)</td>
+                <td>@Html.DisplayFor(model => model.DataFinal)</td>
+                <td>@Html.DisplayFor(model => model.Observacao)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="btn btn-info" asp-action="Index">Voltar</a>
+</div>

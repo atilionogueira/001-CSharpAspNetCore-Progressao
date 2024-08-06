@@ -1,0 +1,30 @@
+﻿@model UCode.App.ViewModels.CampoViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+ <h1>@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Nome)</td>
+                <td>@Html.DisplayFor(model => model.Descricao)</td>
+
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
+    <a class="btn btn-info" asp-action="Index">Volta</a>
+</div>

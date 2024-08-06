@@ -1,0 +1,36 @@
+﻿@model UCode.App.ViewModels.ClasseViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+<vc:summary></vc:summary>
+<h3>Tem certeza de que deseja excluir</h3>
+<div>
+    <hr />
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Nível</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Nome)</td>
+                <td>@Html.DisplayFor(model => model.Nivel)</td>
+                <td>@Html.DisplayFor(model => model.Descricao)</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input class="btn btn-danger" type="submit" value="Delete" /> 
+        <a class="btn btn-info" asp-action="Index">Volta</a>
+    </form>
+</div>

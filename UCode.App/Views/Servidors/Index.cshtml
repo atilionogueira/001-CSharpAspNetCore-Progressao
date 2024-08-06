@@ -1,0 +1,60 @@
+﻿@using UCode.App.Extensions
+@model IEnumerable<UCode.App.ViewModels.ServidorViewModel>
+
+@{
+    ViewData["Title"] = "Lista Servidor";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<vc:summary></vc:summary>
+<p>
+    <a class="btn btn-info" asp-action="Create">Novo Servidor</a>
+</p>
+<table id="idTab" class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Siape)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Campus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCompleto)
+                </td>
+                <td>
+                    @item.Siape.FormataSiape()
+                </td>
+                <td>                    
+                    @item.Cpf.FormataCpf()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Campus.Nome)
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}

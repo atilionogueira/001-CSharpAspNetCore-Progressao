@@ -1,0 +1,65 @@
+﻿@model UCode.App.ViewModels.AtividadeViewModel
+
+@{
+    ViewData["Title"] = "Nova Atividade";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <!--<div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+            <vc:summary></vc:summary>
+            <div class="form-group">
+                <label asp-for="CampoId" class="control-label"></label>
+
+                <select asp-for="CampoId" class ="form-control select2"  asp-items="@(new SelectList(Model.Campos,"Id","Nome"))">
+                    <option></option>
+                </select>              
+                <span asp-validation-for="CampoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pontos" class="control-label"></label>
+                <input asp-for="Pontos" class="form-control" />
+                <span asp-validation-for="Pontos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Detalhes" class="control-label"></label>             
+                <textarea cols="40" rows="5" asp-for="Detalhes" class="form-control"></textarea>
+                <span asp-validation-for="Detalhes" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 10px">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: 'Selecione um campo',
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+}
